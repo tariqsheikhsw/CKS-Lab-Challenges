@@ -39,4 +39,7 @@ k apply -f alpha-xyz.yaml
  
  ![image](https://user-images.githubusercontent.com/54164634/189620467-9f952599-273b-4ab5-af91-2ba0a8eeab40.png)
 
+k apply -f inp.yaml
+
+![image](https://user-images.githubusercontent.com/54164634/189620938-ad934c5b-40d1-44bd-b23b-4dd4575f184d.png)
 
