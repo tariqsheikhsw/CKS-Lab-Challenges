@@ -28,6 +28,30 @@ k apply --force -f /tmp/kubectl-edit-668393621.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189616574-ca6cbe46-98f4-4476-a56c-8100ba8bfdb1.png)
 
+docker images | grep nginx
+
+docker images | grep nginx |awk '{print $1 ":" $2}' |sort -u
+
+which trivy
+
+trivy image --help
+
+trivy image --severity=CRITICAL bitnami/nginx:latest
+
+trivy image --severity=CRITICAL nginx:1.13
+
+trivy image --severity=CRITICAL nginx:1.14
+
+trivy image --severity=CRITICAL nginx:1.16
+
+trivy image --severity=CRITICAL nginx:1.17
+
+trivy image --severity=CRITICAL nginx:alpine
+
+trivy image --severity=CRITICAL nginx:latest
+
+
+
 k apply -f alpha-xyz.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189618304-84c50ad1-5263-40b7-a129-98b9f55a5e87.png)
