@@ -3,6 +3,8 @@ CKS-Lab-Challenges
 
 # CKS Challenge Lab - 1
 
+![image](https://user-images.githubusercontent.com/54164634/189648588-04da9975-54f4-4134-921a-0bdfcf1adbfb.png)
+
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 Kubectl autocomplete
