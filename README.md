@@ -17,4 +17,12 @@ alias k=kubectl
 complete -o default -F __start_kubectl k
 
 
+![image](https://user-images.githubusercontent.com/54164634/189614849-3360c01d-8908-4b8c-9ab9-22a92725d413.png)
 
+![image](https://user-images.githubusercontent.com/54164634/189616447-ba8486ef-b5dc-4fba-8678-d89d0ea4f8bd.png)
+
+
+k apply --force -f /tmp/kubectl-edit-668393621.yaml
+
+
+![image](https://user-images.githubusercontent.com/54164634/189616574-ca6cbe46-98f4-4476-a56c-8100ba8bfdb1.png)
