@@ -94,6 +94,11 @@ kubesec scan staging-webapp.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189636584-39055a7f-a54e-4c2c-acef-7f8492110a1b.png)
 
+![image](https://user-images.githubusercontent.com/54164634/189636939-2e5f1998-00f3-4ad8-9afe-3ff694c0fa60.png)
+
+k get pod -n dev
+
+k replace --force -f dev-webapp.yaml -n dev
 
 
 
