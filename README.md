@@ -83,3 +83,6 @@ apparmor_status | grep custom-nginx
 apparmor_parser -a /etc/apparmor.d/usr.sbin.nginx
 
 # CKS Challenge Lab - 2
+
+![image](https://user-images.githubusercontent.com/54164634/189633811-21148382-67be-4d8f-b11d-adde4e390f41.png)
+
