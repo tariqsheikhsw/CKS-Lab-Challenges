@@ -124,7 +124,8 @@ k get pod -n prod
 
 # CKS Challenge Lab - 3
 
- 
+ ![image](https://user-images.githubusercontent.com/54164634/189655541-0d019a03-902b-4c7c-8516-99a127ebd7ac.png)
+
  
 
 
