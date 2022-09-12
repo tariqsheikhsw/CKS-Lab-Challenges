@@ -43,3 +43,8 @@ k apply -f inp.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189620938-ad934c5b-40d1-44bd-b23b-4dd4575f184d.png)
 
+vi usr.sbin.nginx
+
+apparmor_status | grep custom-nginx
+
+apparmor_parser -a /etc/apparmor.d/usr.sbin.nginx 
