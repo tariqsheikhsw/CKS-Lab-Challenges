@@ -100,6 +100,10 @@ k get pod -n dev
 
 k replace --force -f dev-webapp.yaml -n dev
 
+k replace --force -f staging-webapp.yaml -n staging
+
+
+
 
 
 
