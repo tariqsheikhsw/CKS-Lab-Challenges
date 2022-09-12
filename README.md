@@ -26,3 +26,9 @@ k apply --force -f /tmp/kubectl-edit-668393621.yaml
 
 
 ![image](https://user-images.githubusercontent.com/54164634/189616574-ca6cbe46-98f4-4476-a56c-8100ba8bfdb1.png)
+
+k apply -f alpha-xyz.yaml
+
+![image](https://user-images.githubusercontent.com/54164634/189618304-84c50ad1-5263-40b7-a129-98b9f55a5e87.png)
+
+
