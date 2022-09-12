@@ -104,6 +104,8 @@ k replace --force -f staging-webapp.yaml -n staging
 
 k exec -it dev-webapp -n dev -- sh
 
+k exec -it staging-webapp -n staging -- sh
+
 
 
 
