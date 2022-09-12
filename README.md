@@ -112,12 +112,13 @@ k get deployments.apps prod-web -n prod -oyaml > prod-web.yaml
 
 cat prod-web.yaml | grep -A 7 "env:"
 
-kubectl create secret generic prod-db --from-literal DB_Host=prod-db --from-literal DB_User=root --from-literal DB_Password=password
+kubectl create secret generic prod-db --from-literal DB_Host=prod-db --from-literal DB_User=root --from-literal DB_Password=password -n prod
 
 k describe secrets prod-db 
 
 k edit deployments.apps prod-web -n prod
 
+k get pod -n prod
 
 
 
