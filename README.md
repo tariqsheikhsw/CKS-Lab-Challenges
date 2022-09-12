@@ -21,7 +21,8 @@ complete -o default -F __start_kubectl k
 
 ![image](https://user-images.githubusercontent.com/54164634/189616447-ba8486ef-b5dc-4fba-8678-d89d0ea4f8bd.png)
 
-
+k edit pvc -n alpha
+ 
 k apply --force -f /tmp/kubectl-edit-668393621.yaml
 
 
