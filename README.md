@@ -86,3 +86,12 @@ apparmor_parser -a /etc/apparmor.d/usr.sbin.nginx
 
 ![image](https://user-images.githubusercontent.com/54164634/189633811-21148382-67be-4d8f-b11d-adde4e390f41.png)
 
+docker build -t kodekloud/webapp-color:stable .
+
+which kubesec
+
+kubesec scan staging-webapp.yaml
+
+
+
+
