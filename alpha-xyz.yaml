@@ -17,6 +17,8 @@ spec:
       creationTimestamp: null
       labels:
         app: alpha-xyz
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/nginx: localhost/custom-nginx
     spec:
       containers:
       - image: nginx:alpine
