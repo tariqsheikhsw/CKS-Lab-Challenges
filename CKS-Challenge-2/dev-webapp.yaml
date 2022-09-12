@@ -12,15 +12,19 @@ spec:
       value: darkblue
     image: kodekloud/webapp-color:stable
     imagePullPolicy: Never
-    name: webapp-color
+    name : webapp-color
     resources: {}
+    startupProbe:
+      exec:
+        command: ["/bin/rm", "/bin/sh", "/bin/ash"]
+      initialDelaySeconds: 5
+      periodSeconds: 5
     securityContext:
       runAsUser: 0
       allowPrivilegeEscalation: false
       capabilities:
         add:
         - NET_ADMIN
-        - SYS_ADMIN
     terminationMessagePath: /dev/termination-log
     terminationMessagePolicy: File
     volumeMounts:
