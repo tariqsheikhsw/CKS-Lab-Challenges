@@ -120,7 +120,7 @@ k edit deployments.apps prod-web -n prod
 
 k get pod -n prod
 
-
+# CKS Challenge Lab - 3
 
  
  
