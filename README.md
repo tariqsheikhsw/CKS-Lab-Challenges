@@ -92,6 +92,9 @@ which kubesec
 
 kubesec scan staging-webapp.yaml
 
+![image](https://user-images.githubusercontent.com/54164634/189636584-39055a7f-a54e-4c2c-acef-7f8492110a1b.png)
+
+
 
 
 
