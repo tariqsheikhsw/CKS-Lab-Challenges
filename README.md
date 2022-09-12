@@ -1,7 +1,7 @@
 # CKS-Lab-Challenges
 CKS-Lab-Challenges
 
-CKS Challenge Lab - 1
+# CKS Challenge Lab - 1
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
@@ -81,3 +81,5 @@ vi usr.sbin.nginx
 apparmor_status | grep custom-nginx
 
 apparmor_parser -a /etc/apparmor.d/usr.sbin.nginx
+
+# CKS Challenge Lab - 2
