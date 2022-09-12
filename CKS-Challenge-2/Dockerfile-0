@@ -17,6 +17,6 @@ EXPOSE 22
 
 WORKDIR /opt
 
-USER worker
+USER root
 
 ENTRYPOINT ["python", "app.py"]
