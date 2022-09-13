@@ -126,7 +126,84 @@ k get pod -n prod
 
  ![image](https://user-images.githubusercontent.com/54164634/189655541-0d019a03-902b-4c7c-8516-99a127ebd7ac.png)
 
- 
+curl -L https://github.com/aquasecurity/kube-bench/releases/download/v0.6.2/kube-bench_0.6.2_linux_amd64.tar.gz -o kube-bench_0.6.2_linux_amd64.tar.gz
+
+tar -xvf kube-bench_0.6.2_linux_amd64.tar.gz
+
+mkdir -p /var/www/html/
+
+./kube-bench run --config-dir /opt/cfg --config /opt/cfg/config.yaml > /var/www/html/index.html
+
+cd /var/www/html/
+cat index.html |egrep "INFO|FAIL"
+
+ps -ef |grep kubelet
+/var/lib/kubelet/config.yaml
+
+cat /var/lib/kubelet/config.yaml
+
+$$$ staticPodPath: /etc/kubernetes/manifests
+
+cd  /etc/kubernetes/manifests
+
+vi kube-apiserver.yaml
+parameters:
+
+- --profiling=false
+- --enable-admission-plugins=NodeRestriction,PodSecurityPolicy
+- --insecure-port=0
+
+  - mountPath: /var/log/apiserver/
+    name: audit-log
+    readOnly: false
+
+  - name: audit-log
+    hostPath:
+      path: /var/log/apiserver/
+      type: DirectoryOrCreate
+
+
+    - --audit-log-path=/var/log/apiserver/audit.log
+    - --audit-log-maxage=30
+    - --audit-log-maxbackup=10
+    - --audit-log-maxsize=100
+
+
+rictl ps -a
+
+kubectl config set-context --current --namespace kube-system
+
+ls -l /var/lib/ | grep etcd
+
+chown etcd:etcd /var/lib/etcd
+!
+
+ps -ef |grep kubelet
+
+/var/lib/kubelet/config.yaml 
+
+vi /var/lib/kubelet/config.yaml 
+!
+protectKernelDefaults: true
+
+systemctl restart kubelet
+
+k get nodes
+ssh node01
+
+ps -ef |grep kubelet
+vi /var/lib/kubelet/config.yaml 
+
+
+vi kube-controller-manager.yaml 
+- --profiling=false
+
+vi kube-scheduler.yaml 
+- --profiling=false
+
+crictl ps -a
+
+systemctl restart kubelet
 
 
 
