@@ -205,6 +205,10 @@ crictl ps -a
 
 systemctl restart kubelet
 
+# CKS Challenge Lab - 4
+
+![image](https://user-images.githubusercontent.com/54164634/189811410-e8de8186-41a7-4adb-9733-7150d6b6e6ad.png)
+
 
 
 
