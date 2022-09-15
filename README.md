@@ -9,9 +9,10 @@ https://kodekloud.com/courses/cks-challenges/
 Here's the summary of activities performed during this lab :
 
 - PVC to PV binding
-- Image Scanning using Trivy
+- Image Scanning using Aquasec Trivy
 - Ingress and Egress Network Policy Implementation
 - Secure Deployment using AppArmor Profile
+- Expose Deployment with NodePort Type Service
 
 ![image](https://user-images.githubusercontent.com/54164634/189648588-04da9975-54f4-4134-921a-0bdfcf1adbfb.png)
 
@@ -78,9 +79,9 @@ k apply -f alpha-xyz.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189618304-84c50ad1-5263-40b7-a129-98b9f55a5e87.png)
 
-```
-## Ingress and Egress Network Policy Implementation
+## Expose Deployment with NodePort Type Service
 
+```
 kubectl expose deploy alpha-xyz --name alpha-svc --port 80 --target-port 80 --type ClusterIP --namespace=alpha --dry-run=client -oyaml > alpha-svc.yaml
  
 k apply -f alpha-svc.yaml 
@@ -89,6 +90,8 @@ k get svc -n alpha
 ```
  
  ![image](https://user-images.githubusercontent.com/54164634/189619316-b4ae95ad-af5e-4e10-96e3-1a078a859f14.png)
+ 
+## Ingress and Egress Network Policy Implementation
 
 ```
 k apply -f enp.yaml
