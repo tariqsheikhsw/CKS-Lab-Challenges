@@ -20,16 +20,16 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 Kubectl autocomplete
 BASH
-'''
+```
 source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
 echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
-'''
+```
 
 You can also use a shorthand alias for kubectl that also works with completion:
-'''
+```
 alias k=kubectl
 complete -o default -F __start_kubectl k
-'''
+```
 
 ## PVC to PV binding
 
@@ -37,22 +37,22 @@ complete -o default -F __start_kubectl k
 
 ![image](https://user-images.githubusercontent.com/54164634/189616447-ba8486ef-b5dc-4fba-8678-d89d0ea4f8bd.png)
 
-'''
+```
 k edit pvc -n alpha
  
 k apply --force -f /tmp/kubectl-edit-668393621.yaml
-'''
+```
 
 ![image](https://user-images.githubusercontent.com/54164634/189616574-ca6cbe46-98f4-4476-a56c-8100ba8bfdb1.png)
 
 ## Image Scanning using Trivy
-'''
+```
 docker images | grep nginx
 
 docker images | grep nginx |awk '{print $1 ":" $2}' |sort -u
-'''
+```
 
-'''
+```
 which trivy
 
 trivy image --help
@@ -70,15 +70,15 @@ trivy image --severity=CRITICAL nginx:1.17
 trivy image --severity=CRITICAL nginx:alpine
 
 trivy image --severity=CRITICAL nginx:latest
-'''
+```
 
-'''
+```
 k apply -f alpha-xyz.yaml
-'''
+```
 
 ![image](https://user-images.githubusercontent.com/54164634/189618304-84c50ad1-5263-40b7-a129-98b9f55a5e87.png)
 
-'''
+```
 ## Ingress and Egress Network Policy Implementation
 
 kubectl expose deploy alpha-xyz --name alpha-svc --port 80 --target-port 80 --type ClusterIP --namespace=alpha --dry-run=client -oyaml > alpha-svc.yaml
@@ -86,37 +86,38 @@ kubectl expose deploy alpha-xyz --name alpha-svc --port 80 --target-port 80 --ty
 k apply -f alpha-svc.yaml 
  
 k get svc -n alpha
-'''
+```
  
  ![image](https://user-images.githubusercontent.com/54164634/189619316-b4ae95ad-af5e-4e10-96e3-1a078a859f14.png)
 
-'''
+```
 k apply -f enp.yaml
-'''
+```
  
  ![image](https://user-images.githubusercontent.com/54164634/189620467-9f952599-273b-4ab5-af91-2ba0a8eeab40.png)
 
-'''
+```
 k apply -f inp.yaml
-'''
+```
 
 ![image](https://user-images.githubusercontent.com/54164634/189620938-ad934c5b-40d1-44bd-b23b-4dd4575f184d.png)
 
 
 ## Secure Deployment using AppArmor Profile
 
-'''
+```
 cp /root/usr.sbin.nginx /etc/apparmor.d/usr.sbin.nginx
  
 k replace --force -f alpha-xyz.yaml
  
 vi usr.sbin.nginx
-'''
-'''
+```
+
+```
 apparmor_status | grep custom-nginx
 
 apparmor_parser -a /etc/apparmor.d/usr.sbin.nginx
-'''
+```
 
 # CKS Challenge Lab - 2
 
