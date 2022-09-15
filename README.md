@@ -15,7 +15,7 @@ Here's the summary of activities performed during this lab :
 
 ![image](https://user-images.githubusercontent.com/54164634/189648588-04da9975-54f4-4134-921a-0bdfcf1adbfb.png)
 
-##Basic Environment Pre-requisites
+## Basic Environment Pre-requisites
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 Kubectl autocomplete
@@ -29,7 +29,7 @@ You can also use a shorthand alias for kubectl that also works with completion:
 alias k=kubectl
 complete -o default -F __start_kubectl k
 
-##PVC to PV binding
+## PVC to PV binding
 
 ![image](https://user-images.githubusercontent.com/54164634/189614849-3360c01d-8908-4b8c-9ab9-22a92725d413.png)
 
