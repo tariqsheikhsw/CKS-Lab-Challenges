@@ -124,10 +124,20 @@ apparmor_parser -a /etc/apparmor.d/usr.sbin.nginx
 
 # CKS Challenge Lab - 2
 
+Here's the summary of activities performed during this lab :
+
+- Edit and Build Docker Image using Dockerfile
+- Inspect and fix security issues using kubesec
+
 ![image](https://user-images.githubusercontent.com/54164634/189633811-21148382-67be-4d8f-b11d-adde4e390f41.png)
 
-docker build -t kodekloud/webapp-color:stable .
+## Edit and Build Docker Image using Dockerfile
 
+```
+docker build -t kodekloud/webapp-color:stable .
+```
+
+## Inspect and fix security issues using kubesec
 which kubesec
 
 kubesec scan staging-webapp.yaml
@@ -136,18 +146,25 @@ kubesec scan staging-webapp.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189636939-2e5f1998-00f3-4ad8-9afe-3ff694c0fa60.png)
 
+```
 k get pod -n dev
 
 k replace --force -f dev-webapp.yaml -n dev
 
 k replace --force -f staging-webapp.yaml -n staging
+```
 
+```
 k exec -it dev-webapp -n dev -- sh
 
 k exec -it staging-webapp -n staging -- sh
+```
 
+```
 k apply -f prod-np.yaml
+```
 
+```
 k get deployments.apps prod-web -n prod -oyaml > prod-web.yaml
 
 cat prod-web.yaml | grep -A 7 "env:"
@@ -159,6 +176,7 @@ k describe secrets prod-db
 k edit deployments.apps prod-web -n prod
 
 k get pod -n prod
+```
 
 # CKS Challenge Lab - 3
 
