@@ -397,22 +397,20 @@ crictl ps -a
 systemctl restart kubelet
 ```
 
-## CONFIGURATION FILES:
+## FINAL YAML FILES:
 
-:link: Deployment ['alpha-xyz'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-xyz.yaml)  
-:link: Service ['alpha-svc'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-svc.yaml)  
-:link: NetworkPolicy ['restrict-inbound'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/inp.yaml)  
-:link: NetworkPolicy ['external-network-policy'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/enp.yaml)  
-:link: AppArmor Profile ['custom-nginx'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/usr.sbin.nginx)  
+:link: etcd ['etcd.yaml'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-3/etcd.yaml)
+:link: kubelet-config ['kubelet-config.yaml'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-3/kubelet-config.yaml) 
+:link: kube-apiserver ['kube-apiserver.yaml'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-3/kube-apiserver.yaml) 
+:link: kube-scheduler ['kube-scheduler.yaml'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-3/kube-scheduler.yaml)  
+:link: kube-controller-manager ['kube-controller-manager.yaml'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-3/kube-controller-manager.yaml)
 
 ## FINAL STATUS:
 
-- [✔️]
-
-- Task1 - Use AquaSec 'kube-bench' to identify and fix issues related to controlplane and work node components
-- Task2 - Inspect and fix kube-apiserver auditing issues
-- Task3 - Fix kubelet security issues
-- Task4 - Inspect and fix etcd / kube-controller-manager / kube-scheduler security issues
+[✔️] Task1 - Use AquaSec 'kube-bench' to identify and fix issues related to controlplane and work node components  
+[✔️] Task2 - Inspect and fix kube-apiserver auditing issues  
+[✔️] Task3 - Fix kubelet security issues  
+[✔️] Task4 - Inspect and fix etcd / kube-controller-manager / kube-scheduler security issues  
 
 
 # CKS Challenge Lab - 4
