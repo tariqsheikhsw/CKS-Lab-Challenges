@@ -253,19 +253,48 @@ k apply -f prod-np.yaml
 
 # CKS Challenge Lab - 3
 
+## Scenario / Architecture
+
  ![image](https://user-images.githubusercontent.com/54164634/189655541-0d019a03-902b-4c7c-8516-99a127ebd7ac.png)
 
+
+
+Here's the summary of activities performed during this lab :
+
+:radio_button: Task1 - Use AquaSec 'kube-bench' to identify and fix issues related to controlplane and work node components  
+:radio_button: Task2 - Inspect and fix kube-apiserver auditing issues  
+:radio_button: Task3 - Fix kubelet security issues  
+:radio_button: Task4 - Inspect and fix etcd / kube-controller-manager / kube-scheduler security issues  
+
+. 
+
+## Task1 - Use AquaSec 'kube-bench' to identify and fix issues related to controlplane and work node components
+
+Install 'kube-bench' tool
+
+```
 curl -L https://github.com/aquasecurity/kube-bench/releases/download/v0.6.2/kube-bench_0.6.2_linux_amd64.tar.gz -o kube-bench_0.6.2_linux_amd64.tar.gz
-
 tar -xvf kube-bench_0.6.2_linux_amd64.tar.gz
-
 mkdir -p /var/www/html/
+```
 
+Run 'kube-bench'
+
+```
 ./kube-bench run --config-dir /opt/cfg --config /opt/cfg/config.yaml > /var/www/html/index.html
+```
 
+Identify 'failed' issues 
+
+```
 cd /var/www/html/
 cat index.html |egrep "INFO|FAIL"
+```
 
+## Task2 - Inspect and fix kube-apiserver auditing issues
+
+Kubelet 
+```
 ps -ef |grep kubelet
 /var/lib/kubelet/config.yaml
 
@@ -274,7 +303,11 @@ cat /var/lib/kubelet/config.yaml
 $$$ staticPodPath: /etc/kubernetes/manifests
 
 cd  /etc/kubernetes/manifests
+```
 
+Apply fixes as diagnosed using 'kube-bench' tool
+
+```
 vi kube-apiserver.yaml
 parameters:
 
@@ -296,17 +329,19 @@ parameters:
     - --audit-log-maxage=30
     - --audit-log-maxbackup=10
     - --audit-log-maxsize=100
+```
+
+Ensure process is running post changes
+```
+crictl ps -a
+```
 
 
-rictl ps -a
+## Task3 - Fix kubelet security issues
 
-kubectl config set-context --current --namespace kube-system
+Apply fixes on both controlplane and workernode 
 
-ls -l /var/lib/ | grep etcd
-
-chown etcd:etcd /var/lib/etcd
-!
-
+```
 ps -ef |grep kubelet
 
 /var/lib/kubelet/config.yaml 
@@ -314,25 +349,71 @@ ps -ef |grep kubelet
 vi /var/lib/kubelet/config.yaml 
 !
 protectKernelDefaults: true
+```
 
+```
 systemctl restart kubelet
+```
 
+```
 k get nodes
 ssh node01
 
 ps -ef |grep kubelet
 vi /var/lib/kubelet/config.yaml 
+```
 
+## Task4 - Inspect and fix etcd / kube-controller-manager / kube-scheduler security issues
 
+Fix ETCD issues
+
+```
+kubectl config set-context --current --namespace kube-system
+
+ls -l /var/lib/ | grep etcd
+
+chown etcd:etcd /var/lib/etcd
+```
+
+Fix Kube Controller Manager issues
+
+```
 vi kube-controller-manager.yaml 
 - --profiling=false
+```
 
+Fix Kube Scheduler issues
+
+```
 vi kube-scheduler.yaml 
 - --profiling=false
+```
 
+Restart kubelet and ensure all services are up and running after fixing security issues
+
+```
 crictl ps -a
 
 systemctl restart kubelet
+```
+
+## CONFIGURATION FILES:
+
+:link: Deployment ['alpha-xyz'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-xyz.yaml)  
+:link: Service ['alpha-svc'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-svc.yaml)  
+:link: NetworkPolicy ['restrict-inbound'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/inp.yaml)  
+:link: NetworkPolicy ['external-network-policy'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/enp.yaml)  
+:link: AppArmor Profile ['custom-nginx'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/usr.sbin.nginx)  
+
+## FINAL STATUS:
+
+- [✔️]
+
+- Task1 - Use AquaSec 'kube-bench' to identify and fix issues related to controlplane and work node components
+- Task2 - Inspect and fix kube-apiserver auditing issues
+- Task3 - Fix kubelet security issues
+- Task4 - Inspect and fix etcd / kube-controller-manager / kube-scheduler security issues
+
 
 # CKS Challenge Lab - 4
 
