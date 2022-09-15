@@ -8,11 +8,11 @@ https://kodekloud.com/courses/cks-challenges/
 
 Here's the summary of activities performed during this lab :
 
-- :radio_button: Task1 - PVC to PV binding
-- :radio_button: Task2 - Image Scanning using Aquasec Trivy
-- :radio_button: Task3 - Ingress and Egress Network Policy Implementation
-- :radio_button: Task4 - Secure Deployment using AppArmor Profile
-- :radio_button: Task5 - Expose Deployment with 'ClusterIP' Type Service
+:radio_button: Task1 - PVC to PV binding
+:radio_button: Task2 - Image Scanning using Aquasec Trivy
+:radio_button: Task3 - Ingress and Egress Network Policy Implementation
+:radio_button: Task4 - Secure Deployment using AppArmor Profile
+:radio_button: Task5 - Expose Deployment with 'ClusterIP' Type Service
 
 ## Scenario / Architecture
 
@@ -140,7 +140,7 @@ Verify AppArmor status
 apparmor_status | grep custom-nginx
 ```
 
-## YAML FILES:
+## CONFIGURATION FILES:
 
 :link: Deployment ['alpha-xyz'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-xyz.yaml)  
 :link: Service ['alpha-svc'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-svc.yaml)  
@@ -160,8 +160,11 @@ apparmor_status | grep custom-nginx
 
 Here's the summary of activities performed during this lab :
 
-- Edit and Build Docker Image using Dockerfile
-- Inspect and fix security issues using kubesec
+:radio_button: Task1 - Edit and Build Docker Image using Dockerfile
+:radio_button: Task2 - Inspect and fix security issues using kubesec
+:radio_button: Task3 - Use startupProbe to remove shell access
+:radio_button: Task4 - Access Secret using environment variables within deployment
+:radio_button: Task5 - Implement Ingress Network Policy
 
 ![image](https://user-images.githubusercontent.com/54164634/189633811-21148382-67be-4d8f-b11d-adde4e390f41.png)
 
@@ -180,6 +183,9 @@ kubesec scan staging-webapp.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189636939-2e5f1998-00f3-4ad8-9afe-3ff694c0fa60.png)
 
+## Use startupProbe to remove shell access
+
+Re-create 'dev-webapp' and 'staging-webapp' PODS after fixing security issues
 ```
 k get pod -n dev
 
@@ -188,16 +194,14 @@ k replace --force -f dev-webapp.yaml -n dev
 k replace --force -f staging-webapp.yaml -n staging
 ```
 
+Try shell access and see it failing with 'exit' status
 ```
 k exec -it dev-webapp -n dev -- sh
 
 k exec -it staging-webapp -n staging -- sh
 ```
 
-```
-k apply -f prod-np.yaml
-```
-
+## Access Secret using environment variables within deployment
 ```
 k get deployments.apps prod-web -n prod -oyaml > prod-web.yaml
 
@@ -211,6 +215,28 @@ k edit deployments.apps prod-web -n prod
 
 k get pod -n prod
 ```
+
+## Implement Ingress Network Policy
+```
+k apply -f prod-np.yaml
+```
+
+## CONFIGURATION FILES:
+
+:link: Dockerfile ['Dockerfile'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-2/Dockerfile)  
+:link: POD ['dev-webapp'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-2/dev-webapp.yaml)  
+:link: POD ['staging-webapp'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-2/staging-webapp.yaml)  
+:link: Deployment ['prod-web'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-2/prod-web.yaml)  
+:link: NetworkPolicy ['prod-netpol'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-2/prod-np.yaml)  
+
+## FINAL STATUS:
+
+- [✔️] Edit and Build Docker Image using Dockerfile
+- [✔️] Inspect and fix security issues using kubesec
+- [✔️] Use startupProbe to remove shell access
+- [✔️] Access Secret using environment variables within deployment
+- [✔️] Implement Ingress Network Policy
+
 
 # CKS Challenge Lab - 3
 
