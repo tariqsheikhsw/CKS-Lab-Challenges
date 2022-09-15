@@ -1,7 +1,17 @@
 # CKS-Lab-Challenges
 CKS-Lab-Challenges
 
+Practice CKS Challenge Labslink: 
+https://kodekloud.com/courses/cks-challenges/
+
 # CKS Challenge Lab - 1
+
+Here's the summary of activities performed during this lab :
+
+- PVC to PV binding
+- Image Scanning using Trivy
+- Ingress and Egress Network Policy Implementation
+- Secure Deployment using AppArmor Profile
 
 ![image](https://user-images.githubusercontent.com/54164634/189648588-04da9975-54f4-4134-921a-0bdfcf1adbfb.png)
 
