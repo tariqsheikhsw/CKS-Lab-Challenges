@@ -630,7 +630,7 @@ k delete rolebinding important_binding_do_not_delete -n citadel
 
 
 Tariq A Sheikh
-LinkedIn: https://www.linkedin.com/in/tariq-a-sheikh/
-Credly: https://www.credly.com/users/tariqsheikh
+:link: LinkedIn: https://www.linkedin.com/in/tariq-a-sheikh/  
+:link: Credly: https://www.credly.com/users/tariqsheikh
 
 
