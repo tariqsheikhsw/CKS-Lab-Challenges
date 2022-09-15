@@ -34,10 +34,14 @@ complete -o default -F __start_kubectl k
 
 ## PVC to PV binding
 
+PersistentVolume 'alpha-pv' has already been created. Inspect parameters i.e. 'accessModes' & 'capacity' and modify PVC accordingly
+
 ![image](https://user-images.githubusercontent.com/54164634/189614849-3360c01d-8908-4b8c-9ab9-22a92725d413.png)
 
 ![image](https://user-images.githubusercontent.com/54164634/189616447-ba8486ef-b5dc-4fba-8678-d89d0ea4f8bd.png)
 
+
+Apply the changes and ensure PVC status changes from 'pending' to 'Bound'
 ```
 k edit pvc -n alpha
  
@@ -47,12 +51,15 @@ k apply --force -f /tmp/kubectl-edit-668393621.yaml
 ![image](https://user-images.githubusercontent.com/54164634/189616574-ca6cbe46-98f4-4476-a56c-8100ba8bfdb1.png)
 
 ## Image Scanning using Trivy
+
+List '6' NGINX images 
 ```
 docker images | grep nginx
 
 docker images | grep nginx |awk '{print $1 ":" $2}' |sort -u
 ```
 
+Scan each image and identify the image with 'least number of CRITICAL vulnerabilites'
 ```
 which trivy
 
@@ -73,14 +80,19 @@ trivy image --severity=CRITICAL nginx:alpine
 trivy image --severity=CRITICAL nginx:latest
 ```
 
+Docker Image: nginx:alpine has 0 CRITICAL vulnerabilites. Modify 'alpha-xyz' deployment to use 'nginx:alpine' image and apply the configuration
+
+Final alpha-xyz.yaml file : https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-xyz.yaml
+
 ```
 k apply -f alpha-xyz.yaml
 ```
 
 ![image](https://user-images.githubusercontent.com/54164634/189618304-84c50ad1-5263-40b7-a129-98b9f55a5e87.png)
 
-## Expose Deployment with NodePort Type Service
+## Expose Deployment with 'ClusterIP' Type Service
 
+Expose 'alpha-xyz' deployment as a 'ClusterIP' type service
 ```
 kubectl expose deploy alpha-xyz --name alpha-svc --port 80 --target-port 80 --type ClusterIP --namespace=alpha --dry-run=client -oyaml > alpha-svc.yaml
  
@@ -93,12 +105,14 @@ k get svc -n alpha
  
 ## Ingress and Egress Network Policy Implementation
 
+Restrict external POD from accessing 'alpha-svc' on port 80
 ```
 k apply -f enp.yaml
 ```
  
  ![image](https://user-images.githubusercontent.com/54164634/189620467-9f952599-273b-4ab5-af91-2ba0a8eeab40.png)
 
+Allow Inbound access only from 'middleware' POD
 ```
 k apply -f inp.yaml
 ```
@@ -108,19 +122,30 @@ k apply -f inp.yaml
 
 ## Secure Deployment using AppArmor Profile
 
+Move AppArmor profile to given location on controlplane node. Load and Enforce AppArmor profile 'custom-nginx'
+
 ```
 cp /root/usr.sbin.nginx /etc/apparmor.d/usr.sbin.nginx
  
 k replace --force -f alpha-xyz.yaml
  
-vi usr.sbin.nginx
-```
-
-```
-apparmor_status | grep custom-nginx
+cat usr.sbin.nginx | grep profile
 
 apparmor_parser -a /etc/apparmor.d/usr.sbin.nginx
 ```
+
+Verify AppArmor status
+```
+apparmor_status | grep custom-nginx
+```
+
+## FINAL STATUS:
+
+- [x] PVC to PV binding
+- [x] Image Scanning using Aquasec Trivy
+- [x] Ingress and Egress Network Policy Implementation
+- [x] Secure Deployment using AppArmor Profile
+- [x] Expose Deployment with NodePort Type Service
 
 # CKS Challenge Lab - 2
 
