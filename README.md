@@ -32,7 +32,7 @@ alias k=kubectl
 complete -o default -F __start_kubectl k
 ```
 
-## PVC to PV binding
+## Task1 - PVC to PV binding
 
 PersistentVolume 'alpha-pv' has already been created. Inspect parameters i.e. 'accessModes' & 'capacity' and modify PVC accordingly
 
@@ -50,7 +50,7 @@ k apply --force -f /tmp/kubectl-edit-668393621.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189616574-ca6cbe46-98f4-4476-a56c-8100ba8bfdb1.png)
 
-## Image Scanning using Trivy
+## Task2 - Image Scanning using Trivy
 
 List '6' NGINX images 
 ```
@@ -90,7 +90,7 @@ k apply -f alpha-xyz.yaml
 
 ![image](https://user-images.githubusercontent.com/54164634/189618304-84c50ad1-5263-40b7-a129-98b9f55a5e87.png)
 
-## Expose Deployment with 'ClusterIP' Type Service
+## Task3 - Expose Deployment with 'ClusterIP' Type Service
 
 Expose 'alpha-xyz' deployment as a 'ClusterIP' type service
 ```
@@ -103,7 +103,7 @@ k get svc -n alpha
  
  ![image](https://user-images.githubusercontent.com/54164634/189619316-b4ae95ad-af5e-4e10-96e3-1a078a859f14.png)
  
-## Ingress and Egress Network Policy Implementation
+## Task4 - Ingress and Egress Network Policy Implementation
 
 Restrict external POD from accessing 'alpha-svc' on port 80
 ```
@@ -120,7 +120,7 @@ k apply -f inp.yaml
 ![image](https://user-images.githubusercontent.com/54164634/189620938-ad934c5b-40d1-44bd-b23b-4dd4575f184d.png)
 
 
-## Secure Deployment using AppArmor Profile
+## Task5 - Secure Deployment using AppArmor Profile
 
 Move AppArmor profile to given location on controlplane node. Load and Enforce AppArmor profile 'custom-nginx'
 
