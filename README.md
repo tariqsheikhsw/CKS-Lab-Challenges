@@ -12,7 +12,7 @@ Here's the summary of activities performed during this lab :
 - Image Scanning using Aquasec Trivy
 - Ingress and Egress Network Policy Implementation
 - Secure Deployment using AppArmor Profile
-- Expose Deployment with NodePort Type Service
+- Expose Deployment with 'ClusterIP' Type Service
 
 ![image](https://user-images.githubusercontent.com/54164634/189648588-04da9975-54f4-4134-921a-0bdfcf1adbfb.png)
 
