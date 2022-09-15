@@ -142,11 +142,11 @@ apparmor_status | grep custom-nginx
 
 ## YAML FILES:
 
-:link: Deployment ['alpha-xyz'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-xyz.yaml)
-:link: Service ['alpha-svc'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-svc.yaml)
-:link: NetworkPolicy ['restrict-inbound'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/inp.yaml)
-:link: NetworkPolicy ['external-network-policy'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/enp.yaml)
-:link: AppArmor Profile ['custom-nginx]'(https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/usr.sbin.nginx)
+:link: Deployment ['alpha-xyz'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-xyz.yaml)  
+:link: Service ['alpha-svc'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/alpha-svc.yaml)  
+:link: NetworkPolicy ['restrict-inbound'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/inp.yaml)  
+:link: NetworkPolicy ['external-network-policy'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/enp.yaml)  
+:link: AppArmor Profile ['custom-nginx'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-1/usr.sbin.nginx)  
 
 ## FINAL STATUS:
 
