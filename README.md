@@ -4,6 +4,9 @@ CKS-Lab-Challenges
 Practice CKS Challenge Labslink: 
 https://kodekloud.com/courses/cks-challenges/
 
+
+
+
 # CKS Challenge Lab - 1
 
 Here's the summary of activities performed during this lab :
@@ -156,6 +159,9 @@ apparmor_status | grep custom-nginx
 - [✔️] Secure Deployment using AppArmor Profile
 - [✔️] Expose Deployment with NodePort Type Service
 
+
+
+
 # CKS Challenge Lab - 2
 
 Here's the summary of activities performed during this lab :
@@ -249,6 +255,9 @@ k apply -f prod-np.yaml
 - [✔️] Use startupProbe to remove shell access
 - [✔️] Access Secret using environment variables within deployment
 - [✔️] Implement Ingress Network Policy
+
+
+
 
 
 # CKS Challenge Lab - 3
@@ -411,6 +420,9 @@ systemctl restart kubelet
 [✔️] Task2 - Inspect and fix kube-apiserver auditing issues    
 [✔️] Task3 - Fix kubelet security issues    
 [✔️] Task4 - Inspect and fix etcd / kube-controller-manager / kube-scheduler security issues    
+
+
+
 
 
 # CKS Challenge Lab - 4
