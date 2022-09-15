@@ -141,11 +141,11 @@ apparmor_status | grep custom-nginx
 
 ## FINAL STATUS:
 
-- [x] PVC to PV binding
-- [x] Image Scanning using Aquasec Trivy
-- [x] Ingress and Egress Network Policy Implementation
-- [x] Secure Deployment using AppArmor Profile
-- [x] Expose Deployment with NodePort Type Service
+- [✔️] PVC to PV binding
+- [✔️] Image Scanning using Aquasec Trivy
+- [✔️] Ingress and Egress Network Policy Implementation
+- [✔️] Secure Deployment using AppArmor Profile
+- [✔️] Expose Deployment with NodePort Type Service
 
 # CKS Challenge Lab - 2
 
