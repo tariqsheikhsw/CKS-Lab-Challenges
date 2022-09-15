@@ -8,11 +8,11 @@ https://kodekloud.com/courses/cks-challenges/
 
 Here's the summary of activities performed during this lab :
 
-- PVC to PV binding
-- Image Scanning using Aquasec Trivy
-- Ingress and Egress Network Policy Implementation
-- Secure Deployment using AppArmor Profile
-- Expose Deployment with 'ClusterIP' Type Service
+- :radio_button: Task1 - PVC to PV binding
+- :radio_button: Task2 - Image Scanning using Aquasec Trivy
+- :radio_button: Task3 - Ingress and Egress Network Policy Implementation
+- :radio_button: Task4 - Secure Deployment using AppArmor Profile
+- :radio_button: Task5 - Expose Deployment with 'ClusterIP' Type Service
 
 ![image](https://user-images.githubusercontent.com/54164634/189648588-04da9975-54f4-4134-921a-0bdfcf1adbfb.png)
 
