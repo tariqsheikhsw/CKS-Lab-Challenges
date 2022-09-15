@@ -177,16 +177,21 @@ Copy the required files (app.py,requirements.txt,templates) and build docker ima
 docker build -t kodekloud/webapp-color:stable .
 ```
 
-## Inspect and fix security issues using kubesec
+## Task2 - Inspect and fix security issues using kubesec
+
+Scan YAML using kubesec
+
+```
 which kubesec
 
 kubesec scan staging-webapp.yaml
+```
 
 ![image](https://user-images.githubusercontent.com/54164634/189636584-39055a7f-a54e-4c2c-acef-7f8492110a1b.png)
 
 ![image](https://user-images.githubusercontent.com/54164634/189636939-2e5f1998-00f3-4ad8-9afe-3ff694c0fa60.png)
 
-## Use startupProbe to remove shell access
+## Task3 - Use startupProbe to remove shell access
 
 Re-create 'dev-webapp' and 'staging-webapp' PODS after fixing security issues
 ```
@@ -204,7 +209,9 @@ k exec -it dev-webapp -n dev -- sh
 k exec -it staging-webapp -n staging -- sh
 ```
 
-## Access Secret using environment variables within deployment
+## Task4 - Access Secret using environment variables within deployment
+
+Create Generic Secret 'prod-db' and access Secret using envFrom within deployment 'prod-web'
 ```
 k get deployments.apps prod-web -n prod -oyaml > prod-web.yaml
 
@@ -219,7 +226,10 @@ k edit deployments.apps prod-web -n prod
 k get pod -n prod
 ```
 
-## Implement Ingress Network Policy
+## Task5 - Implement Ingress Network Policy
+
+Create NetworkPolicy 'prod-netpol' and allow traffic only within 'prod' namespace. Deny traffic from other namespaces.
+
 ```
 k apply -f prod-np.yaml
 ```
