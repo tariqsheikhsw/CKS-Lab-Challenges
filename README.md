@@ -336,11 +336,13 @@ systemctl restart kubelet
 
 # CKS Challenge Lab - 4
 
+## Scenario / Architecture
 ![image](https://user-images.githubusercontent.com/54164634/189811410-e8de8186-41a7-4adb-9733-7150d6b6e6ad.png)
 
-- Configure Auditing using Audio Policy
-- Apply auditing to kube-apiserver 
-- Install & Analyze Falco 
+:radio_button: Task1 - Configure Auditing using Audit Policy
+:radio_button: Task2 -- Apply auditing to kube-apiserver 
+:radio_button: Task3 -- Install & Analyze Falco 
+
 
 Check ConfigMaps/Roles for Citadel Namespace
 ```
@@ -350,27 +352,29 @@ k get cm -n citadel
 
 k get role -n citadel
 ```
-## Configure Auditing using Audio Policy
+## Task1 - Configure Auditing using Audio Policy
 
 Audit Policy:
+
+Create Single rule in audit policy as per the requirement give at path /etc/kubernetes/audit-policy.yaml'
 
 ```
 /etc/kubernetes/audit-policy.yaml
 ```
 
-## Apply auditing to kube-apiserver 
+## Task2 - Apply auditing to kube-apiserver 
 
-Modify kube-apiserver 
+Modify kube-apiserver and create required mountPaths
 
 ```
 cd /etc/kubernetes/manifests/
 vi kube-apiserver.yaml
 ```
 
-Make Changes
+Make Changes as required in given scenario
 ```
-	- --audit-policy-file=/etc/kubernetes/audit-policy.yaml
-	- --audit-log-path=/var/log/kubernetes/audit/audit.log
+- --audit-policy-file=/etc/kubernetes/audit-policy.yaml
+- --audit-log-path=/var/log/kubernetes/audit/audit.log
 
     - mountPath: /etc/kubernetes/audit-policy.yaml
       name: audit
@@ -389,15 +393,16 @@ Make Changes
       type: DirectoryOrCreate
 ```
 
-Check kube-apiserver Status
+Check kube-apiserver Status and ensure it is running
 ```
 systemctl restart kubelet
 crictl ps | grep api
 journalctl | grep apiserver
 ```
 
-## Install & Analyze Falco 
+## Task3 - Install & Analyze Falco 
 
+Install Falco Utility and start it as systemd service
 ```
 cat /etc/os-release
 ```
@@ -411,6 +416,7 @@ apt-get -y install linux-headers-$(uname -r)
 apt-get install -y falco
 ```
 
+Check process status
 ```
 crictl ps
 crictl pods
@@ -420,6 +426,8 @@ systemctl restart kubelet
 systemctl restart falco
 systemctl status falco
 ```
+
+Configure Falco to save event output to given path: /opt/falco.log
 
 ```
 cd /etc/falco
@@ -432,11 +440,14 @@ file_output:
   filename: /opt/falco.log
 ```
 
+Restart once changes have been made
+
 ```
 systemctl restart falco
 systemctl status falco
 ```
 
+Insect API server audit logs and identify user causing abnormal behaviour
 ```
 cd /var/log/kubernetes/audit/
 ls -al
@@ -444,6 +455,8 @@ ls -al
 
 cat audit.log |grep citadel |egrep -v "\"get|\"watch|\"list" |jq
 ```
+
+Find the name of the 'user', 'role' and 'rolebinding' responsible for the event
 
 ```
 k get sa -n citadel
@@ -462,45 +475,67 @@ k get rolebindings.rbac.authorization.k8s.io important_binding_do_not_delete -n 
 k get rolebindings.rbac.authorization.k8s.io important_binding_do_not_delete -n citadel -oyaml
 ```
 
+Save the name of the 'user', 'role' and 'rolebinding' responsible for the event to the file '/opt/blacklist_users' file 
+
 ```
 echo "agent-smith,important_role_do_not_delete,important_binding_do_not_delete" > /opt/blacklist_users
 ```
 
+Inspect the 'falco' logs and identify the pod that has events generated because of packages being updated on it
 ```
 cat falco.log 
 
 05:32:46.651495067: Error Package management process launched in container (user=root user_loginuid=-1 command=apt install nginx container_id=e23544847bbf container_name=k8s_eden-software2_eden-software2_eden-prime_07eb74da-63d8-4ac5-8310-ab49fa93cbc6_0 image=ubuntu:latest)
 ```
+Identify the container ID
 ```
 //container_id=e23544847bbf
 
 crictl ps |grep "e23544847bbf"
 ```
 
+Identify the namespace and pod name
 ```
 crictl pods| grep "91efe3fe8bed6"
 root@controlplane /opt ➜  crictl pods| grep "91efe3fe8bed6"
 91efe3fe8bed6       54 minutes ago       Ready               eden-software2                         eden-prime          0                   (default)
 ```
 
+Save the namespace and pod name to file '/opt/compromised_pods' 
 ```
 echo "eden-prime,eden-software2" > /opt/compromised_pods
 ```
+
+Delete the POD belonging to the 'omega' namespace that were flagged in the 'Security Report' file '/opt/compromised_pods'
 
 ```
 k delete pod eden-software2 -n eden-prime
 ```
 
+Identify and delete the role and rolebinding causing the constant deletion and creation of the configmaps and pods in this namespace
 ```
 k get role -n citadel
 k get rolebinding -n citadel
 ```
 
+Take Action
 ```
 k delete role important_role_do_not_delete -n citadel
 k delete rolebinding important_binding_do_not_delete -n citadel 
 ```
 
+
+
+## CONFIGURATION FILES:
+
+:link: Audit Policy ['audit-policy.yaml'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-4/audit-policy.yaml)  
+:link: KUBE API Server ['kube-apiserver'](https://github.com/tariqsheikhsw/CKS-Lab-Challenges/blob/main/CKS-Challenge-4/kube-apiserver.yaml)  
+
+## FINAL STATUS:
+
+[✔️] Task1 - Configure Auditing using Audit Policy
+[✔️] Task2 - Apply auditing to kube-apiserver 
+[✔️] Task3 - Install & Analyze Falco 
 
 
 
