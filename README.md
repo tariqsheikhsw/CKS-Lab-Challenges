@@ -265,7 +265,168 @@ systemctl restart kubelet
 
 ![image](https://user-images.githubusercontent.com/54164634/189811410-e8de8186-41a7-4adb-9733-7150d6b6e6ad.png)
 
+- Configure Auditing using Audio Policy
+- Apply auditing to kube-apiserver 
+- Install & Analyze Falco 
 
+Check ConfigMaps/Roles for Citadel Namespace
+```
+k get all -n citadel
+
+k get cm -n citadel
+
+k get role -n citadel
+```
+## Configure Auditing using Audio Policy
+
+Audit Policy:
+
+```
+/etc/kubernetes/audit-policy.yaml
+```
+
+## Apply auditing to kube-apiserver 
+
+Modify kube-apiserver 
+
+```
+cd /etc/kubernetes/manifests/
+vi kube-apiserver.yaml
+```
+
+Make Changes
+```
+	- --audit-policy-file=/etc/kubernetes/audit-policy.yaml
+	- --audit-log-path=/var/log/kubernetes/audit/audit.log
+
+    - mountPath: /etc/kubernetes/audit-policy.yaml
+      name: audit
+      readOnly: true
+    - mountPath: /var/log/kubernetes/audit/
+      name: audit-log
+      readOnly: false
+
+  - name: audit
+    hostPath:
+      path: /etc/kubernetes/audit-policy.yaml
+      type: File
+  - name: audit-log
+    hostPath:
+      path: /var/log/kubernetes/audit/
+      type: DirectoryOrCreate
+```
+
+Check kube-apiserver Status
+```
+systemctl restart kubelet
+crictl ps | grep api
+journalctl | grep apiserver
+```
+
+## Install & Analyze Falco 
+
+```
+cat /etc/os-release
+```
+URL : https://falco.org/docs/getting-started/installation/#debian
+
+```
+curl -s https://falco.org/repo/falcosecurity-3672BA8F.asc | apt-key add -
+echo "deb https://download.falco.org/packages/deb stable main" | tee -a /etc/apt/sources.list.d/falcosecurity.list
+apt-get update -y
+apt-get -y install linux-headers-$(uname -r)
+apt-get install -y falco
+```
+
+```
+crictl ps
+crictl pods
+
+systemctl restart kubelet 
+
+systemctl restart falco
+systemctl status falco
+```
+
+```
+cd /etc/falco
+ls
+vim falco.yaml
+
+file_output:
+  enabled:  true
+  keep_alive: false
+  filename: /opt/falco.log
+```
+
+```
+systemctl restart falco
+systemctl status falco
+```
+
+```
+cd /var/log/kubernetes/audit/
+ls -al
+//audit.log 
+
+cat audit.log |grep citadel |egrep -v "\"get|\"watch|\"list" |jq
+```
+
+```
+k get sa -n citadel
+k get role -n citadel
+```
+
+```
+k get role important_role_do_not_delete -n citadel
+
+k get rolebindings.rbac.authorization.k8s.io -n citadel
+```
+
+```
+k get rolebindings.rbac.authorization.k8s.io important_binding_do_not_delete -n citadel
+
+k get rolebindings.rbac.authorization.k8s.io important_binding_do_not_delete -n citadel -oyaml
+```
+
+```
+echo "agent-smith,important_role_do_not_delete,important_binding_do_not_delete" > /opt/blacklist_users
+```
+
+```
+cat falco.log 
+
+05:32:46.651495067: Error Package management process launched in container (user=root user_loginuid=-1 command=apt install nginx container_id=e23544847bbf container_name=k8s_eden-software2_eden-software2_eden-prime_07eb74da-63d8-4ac5-8310-ab49fa93cbc6_0 image=ubuntu:latest)
+```
+```
+//container_id=e23544847bbf
+
+crictl ps |grep "e23544847bbf"
+```
+
+```
+crictl pods| grep "91efe3fe8bed6"
+root@controlplane /opt ➜  crictl pods| grep "91efe3fe8bed6"
+91efe3fe8bed6       54 minutes ago       Ready               eden-software2                         eden-prime          0                   (default)
+```
+
+```
+echo "eden-prime,eden-software2" > /opt/compromised_pods
+```
+
+```
+k delete pod eden-software2 -n eden-prime
+```
+
+```
+k get role -n citadel
+k get rolebinding -n citadel
+```
+
+```
+k delete role important_role_do_not_delete -n citadel
+k delete rolebinding important_binding_do_not_delete -n citadel 
+```
 
 
 
