@@ -166,10 +166,13 @@ Here's the summary of activities performed during this lab :
 :radio_button: Task4 - Access Secret using environment variables within deployment  
 :radio_button: Task5 - Implement Ingress Network Policy  
 
+## Scenario / Architecture
+
 ![image](https://user-images.githubusercontent.com/54164634/189633811-21148382-67be-4d8f-b11d-adde4e390f41.png)
 
-## Edit and Build Docker Image using Dockerfile
+## Task1 - Edit and Build Docker Image using Dockerfile
 
+Copy the required files (app.py,requirements.txt,templates) and build docker image
 ```
 docker build -t kodekloud/webapp-color:stable .
 ```
