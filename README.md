@@ -339,9 +339,9 @@ systemctl restart kubelet
 ## Scenario / Architecture
 ![image](https://user-images.githubusercontent.com/54164634/189811410-e8de8186-41a7-4adb-9733-7150d6b6e6ad.png)
 
-:radio_button: Task1 - Configure Auditing using Audit Policy
-:radio_button: Task2 -- Apply auditing to kube-apiserver 
-:radio_button: Task3 -- Install & Analyze Falco 
+:radio_button: Task1 - Configure Auditing using Audit Policy  
+:radio_button: Task2 -- Apply auditing to kube-apiserver   
+:radio_button: Task3 -- Install & Analyze Falco   
 
 
 Check ConfigMaps/Roles for Citadel Namespace
@@ -533,9 +533,9 @@ k delete rolebinding important_binding_do_not_delete -n citadel
 
 ## FINAL STATUS:
 
-[✔️] Task1 - Configure Auditing using Audit Policy
-[✔️] Task2 - Apply auditing to kube-apiserver 
-[✔️] Task3 - Install & Analyze Falco 
+[✔️] Task1 - Configure Auditing using Audit Policy  
+[✔️] Task2 - Apply auditing to kube-apiserver   
+[✔️] Task3 - Install & Analyze Falco   
 
 
 
