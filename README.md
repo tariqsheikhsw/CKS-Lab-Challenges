@@ -8,11 +8,11 @@ https://kodekloud.com/courses/cks-challenges/
 
 Here's the summary of activities performed during this lab :
 
-:radio_button: Task1 - PVC to PV binding
-:radio_button: Task2 - Image Scanning using Aquasec Trivy
-:radio_button: Task3 - Ingress and Egress Network Policy Implementation
-:radio_button: Task4 - Secure Deployment using AppArmor Profile
-:radio_button: Task5 - Expose Deployment with 'ClusterIP' Type Service
+:radio_button: Task1 - PVC to PV binding  
+:radio_button: Task2 - Image Scanning using Aquasec Trivy  
+:radio_button: Task3 - Ingress and Egress Network Policy Implementation  
+:radio_button: Task4 - Secure Deployment using AppArmor Profile  
+:radio_button: Task5 - Expose Deployment with 'ClusterIP' Type Service  
 
 ## Scenario / Architecture
 
@@ -160,11 +160,11 @@ apparmor_status | grep custom-nginx
 
 Here's the summary of activities performed during this lab :
 
-:radio_button: Task1 - Edit and Build Docker Image using Dockerfile
-:radio_button: Task2 - Inspect and fix security issues using kubesec
-:radio_button: Task3 - Use startupProbe to remove shell access
-:radio_button: Task4 - Access Secret using environment variables within deployment
-:radio_button: Task5 - Implement Ingress Network Policy
+:radio_button: Task1 - Edit and Build Docker Image using Dockerfile  
+:radio_button: Task2 - Inspect and fix security issues using kubesec  
+:radio_button: Task3 - Use startupProbe to remove shell access  
+:radio_button: Task4 - Access Secret using environment variables within deployment  
+:radio_button: Task5 - Implement Ingress Network Policy  
 
 ![image](https://user-images.githubusercontent.com/54164634/189633811-21148382-67be-4d8f-b11d-adde4e390f41.png)
 
